@@ -40,4 +40,22 @@ public class CategoryController {
     }
 
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping(path = "/{categoryId}")
+    public ResponseEntity<CategoryDto> updateCategory(@PathVariable("categoryId")Long categoryId,
+                                                      @RequestBody CategoryDto categoryDto){
+        CategoryDto updatedCategory = categoryService.updateCategory(categoryId, categoryDto);
+
+        return ResponseEntity.ok(updatedCategory);
+    }
+
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{categoryId}")
+    public ResponseEntity<String> deleteCategory(@PathVariable("categoryId")Long categoryId){
+        categoryService.deleteCategory(categoryId);
+        return new ResponseEntity<>("Category deleted successfully", HttpStatus.OK);
+    }
+
+
 }

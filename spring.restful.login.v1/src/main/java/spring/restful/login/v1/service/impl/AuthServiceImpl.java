@@ -49,9 +49,6 @@ public class AuthServiceImpl implements AuthService {
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()
         ));
 
-
-
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtTokenProvider.generateToken(authentication);
@@ -79,7 +76,7 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(registerDto.getEmail());
 
         Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName(ERole.ROLE_ADMIN).get();
+        Role userRole = roleRepository.findByName(ERole.ROLE_USER).get();
         roles.add(userRole);
         user.setRoles(roles);
 
