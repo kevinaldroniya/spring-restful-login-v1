@@ -79,7 +79,7 @@ public class AuthServiceImpl implements AuthService {
         user.setEmail(registerDto.getEmail());
 
         Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName(ERole.ROLE_USER).get();
+        Role userRole = roleRepository.findByName(ERole.ROLE_ADMIN).get();
         roles.add(userRole);
         user.setRoles(roles);
 
